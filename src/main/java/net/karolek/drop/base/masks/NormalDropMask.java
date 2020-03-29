@@ -36,15 +36,15 @@ public class NormalDropMask extends DropMask {
         int amount = 1;
         byte data;
         switch (type) {
-            case NETHER_WARTS:
+            case LEGACY_NETHER_WARTS:
                 final NetherWarts warts = (NetherWarts) block.getState().getData();
                 amount = (warts.getState().equals(NetherWartsState.RIPE) ? (RandomUtil.getRandInt(0, 2) + 2) : 1);
-                items.add(new ItemStack(Material.NETHER_STALK, amount));
+                items.add(new ItemStack(Material.LEGACY_NETHER_STALK, amount));
                 break;
             case COCOA:
                 final CocoaPlant plant = (CocoaPlant) block.getState().getData();
                 amount = (plant.getSize().equals(CocoaPlant.CocoaPlantSize.LARGE) ? 3 : 1);
-                items.add(new ItemStack(Material.INK_SACK, amount, (short) 3));
+                items.add(new ItemStack(Material.LEGACY_INK_SACK, amount, (short) 3));
                 break;
             case PUMPKIN_STEM:
                 items.add(new ItemStack(Material.PUMPKIN_SEEDS, 1));
@@ -68,7 +68,7 @@ public class NormalDropMask extends DropMask {
                         amount = RandomUtil.getRandInt(1, 3);
                         break;
                 }
-                items.add(new ItemStack(Material.CARROT_ITEM, amount));
+                items.add(new ItemStack(Material.LEGACY_CARROT_ITEM, amount));
                 break;
             case POTATO:
                 data = block.getState().getData().getData();
@@ -87,26 +87,26 @@ public class NormalDropMask extends DropMask {
                         break;
 
                 }
-                items.add(new ItemStack(Material.POTATO_ITEM, amount));
+                items.add(new ItemStack(Material.LEGACY_POTATO_ITEM, amount));
                 break;
-            case CROPS:
+            case LEGACY_CROPS:
                 final Crops wheat = (Crops) block.getState().getData();
                 int seedamount = 1;
                 if (wheat.getState() == CropState.RIPE) {
                     items.add(new ItemStack(Material.WHEAT, RandomUtil.getRandInt(1, 2)));
                     seedamount = 1 + RandomUtil.getRandInt(0, 2);
                 }
-                items.add(new ItemStack(Material.SEEDS, seedamount));
+                items.add(new ItemStack(Material.LEGACY_SEEDS, seedamount));
                 break;
-            case SUGAR_CANE_BLOCK:
+            case LEGACY_SUGAR_CANE_BLOCK:
                 amount = 1;
                 items.add(new ItemStack(Material.SUGAR_CANE, amount));
                 break;
-            case DOUBLE_PLANT:
+            case LEGACY_DOUBLE_PLANT:
                 data = block.getData();
                 if (data == 11) {
                     Block under = block.getRelative(0, -1, 0);
-                    if (under.getType() == Material.DOUBLE_PLANT) {
+                    if (under.getType() == Material.LEGACY_DOUBLE_PLANT) {
                         items.addAll(under.getDrops(item));
                         under.setType(Material.AIR);
                     }
@@ -115,11 +115,11 @@ public class NormalDropMask extends DropMask {
                 }
                 break;
             case REDSTONE_WIRE:
-            case WOODEN_DOOR:
+            case LEGACY_WOODEN_DOOR:
                 data = block.getData();
                 if (data == 8) {
                     Block under = block.getRelative(0, -1, 0);
-                    if (under.getType() == Material.WOODEN_DOOR) {
+                    if (under.getType() == Material.LEGACY_WOODEN_DOOR) {
                         items.addAll(under.getDrops(item));
                         under.setType(Material.AIR);
                     }
@@ -127,11 +127,11 @@ public class NormalDropMask extends DropMask {
                     items.addAll(block.getDrops(item));
                 }
                 break;
-            case IRON_DOOR_BLOCK:
+            case LEGACY_IRON_DOOR_BLOCK:
                 data = block.getData();
                 if (data == 8) {
                     Block under = block.getRelative(0, -1, 0);
-                    if (under.getType() == Material.IRON_DOOR_BLOCK) {
+                    if (under.getType() == Material.LEGACY_IRON_DOOR_BLOCK) {
                         items.addAll(under.getDrops(item));
                         under.setType(Material.AIR);
                     }
@@ -141,17 +141,17 @@ public class NormalDropMask extends DropMask {
                 break;
             case TRIPWIRE:
             case LEVER:
-            case WOOD_BUTTON:
+            case LEGACY_WOOD_BUTTON:
             case STONE_BUTTON:
-            case DIODE_BLOCK_ON:
-            case DIODE_BLOCK_OFF:
-            case REDSTONE_COMPARATOR_OFF:
-            case REDSTONE_COMPARATOR_ON:
+            case LEGACY_DIODE_BLOCK_ON:
+            case LEGACY_DIODE_BLOCK_OFF:
+            case LEGACY_REDSTONE_COMPARATOR_OFF:
+            case LEGACY_REDSTONE_COMPARATOR_ON:
             case DAYLIGHT_DETECTOR:
                 items.addAll(block.getDrops(item));
                 break;
             case REDSTONE_ORE:
-            case GLOWING_REDSTONE_ORE:
+            case LEGACY_GLOWING_REDSTONE_ORE:
                 if (item.containsEnchantment(Enchantment.SILK_TOUCH) && block.getType().isBlock()) {
                     items.add(new ItemStack(Material.REDSTONE_ORE));
                     break;
@@ -159,7 +159,7 @@ public class NormalDropMask extends DropMask {
                 items.addAll(block.getDrops(item));
                 break;
             case SNOW:
-                items.add(new ItemStack(Material.SNOW_BALL, block.getData()));
+                items.add(new ItemStack(Material.SNOWBALL, block.getData()));
                 break;
             default:
                 if (item.containsEnchantment(Enchantment.SILK_TOUCH) && block.getType().isBlock()) {
