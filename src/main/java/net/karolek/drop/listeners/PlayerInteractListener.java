@@ -26,7 +26,7 @@ public class PlayerInteractListener extends DropObject implements Listener {
         Block b = e.getClickedBlock();
         if (b == null) return;
 
-        Util.sendMsg(e.getPlayer(), "&7" + b.getType() + "(" + b.getTypeId() + ":" + b.getData() + ")");
+        Util.sendMsg(e.getPlayer(), "&7" + b.getType() + "(" + b.getType().name() + ":" + b.getData() + ")");
 
     }
 }
