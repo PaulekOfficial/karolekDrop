@@ -34,14 +34,14 @@ public final class DropUtil {
             if (100 / (enchantLevel + 1) > RandomUtil.getRandInt(0, 100)) {
                 if (d == item.getType().getMaxDurability()) {
                     player.getInventory().clear(player.getInventory().getHeldItemSlot());
-                    player.playSound(player.getLocation(), Sound.ITEM_BREAK, 1.0F, 1.0F);
+                    player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0F, 1.0F);
                 } else {
                     item.setDurability((short) (d + 1));
                 }
             }
         } else if (d == item.getType().getMaxDurability()) {
             player.getInventory().clear(player.getInventory().getHeldItemSlot());
-            player.playSound(player.getLocation(), Sound.ITEM_BREAK, 1.0F, 1.0F);
+            player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0F, 1.0F);
         } else {
             item.setDurability((short) (d + 1));
         }
