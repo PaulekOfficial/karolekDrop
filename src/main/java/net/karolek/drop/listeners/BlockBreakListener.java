@@ -29,8 +29,13 @@ public class BlockBreakListener extends DropObject implements Listener {
         if (!Config.GAMEMODE_DROP && p.getGameMode() == GameMode.CREATIVE) return;
 
         DropMask mask = getDropManager().getDropMask(b.getType());
-        mask.breakBlock(p, tool, b);
-        b.setType(Material.AIR);
-        event.setCancelled(true);
+        boolean bool = mask.breakBlock(p, tool, b);
+        if(!bool) {
+            event.setDropItems(false);
+        }
+        if(!Config.NORMAL_DROP){
+            b.setType(Material.AIR);
+            event.setCancelled(true);
+        }
     }
 }

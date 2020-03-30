@@ -12,6 +12,6 @@ public abstract class DropMask extends DropObject {
         super(plugin);
     }
 
-    public abstract void breakBlock(Player player, ItemStack tool, Block block);
+    public abstract boolean breakBlock(Player player, ItemStack tool, Block block);
 
 }

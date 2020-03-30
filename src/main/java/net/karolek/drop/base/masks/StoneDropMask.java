@@ -7,9 +7,12 @@ import net.karolek.drop.base.DropMask;
 import net.karolek.drop.utils.DropUtil;
 import net.karolek.drop.utils.RandomUtil;
 import net.karolek.drop.utils.Util;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -23,7 +26,7 @@ public class StoneDropMask extends DropMask {
     }
 
     @Override
-    public void breakBlock(Player player, ItemStack tool, Block block) {
+    public boolean breakBlock(Player player, ItemStack tool, Block block) {
         int exp = Config.STONE$EXP;
         List<ItemStack> drops = new ArrayList<>();
         for (Drop drop : getDropManager().getRandomDrops()) {
@@ -55,8 +58,21 @@ public class StoneDropMask extends DropMask {
         if (drops.size() < 1)
             drops.add(new ItemStack(tool.containsEnchantment(Enchantment.SILK_TOUCH) ? Material.STONE : Material.COBBLESTONE));
 
-        DropUtil.recalculateDurability(player, tool);
-        DropUtil.addItemsToPlayer(player, drops, block);
-        player.giveExp(exp);
+        if(!Config.NORMAL_DROP) {
+            DropUtil.recalculateDurability(player, tool);
+            DropUtil.addItemsToPlayer(player, drops, block);
+            player.giveExp(exp);
+            return true;
+        }
+        Location location = block.getLocation();
+        World world = location.getWorld();
+        if(drops == null || drops.size() < 0) {
+            return true;
+        }
+        for(ItemStack is : drops) {
+            world.dropItemNaturally(location, is);
+        }
+        world.spawn(location, ExperienceOrb.class).setExperience(exp);
+        return false;
     }
 }

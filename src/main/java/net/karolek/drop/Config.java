@@ -12,6 +12,8 @@ public final class Config {
 
     private static final String pathPrefix = "config.";
 
+    public static boolean NORMAL_DROP = false;
+
     public static String GUI_NAME = "&4&lDROP Z KAMIENIA";
     public static List<String> GUI_ICON_LORE = Arrays.asList("&8> &amozesz wydropic: &7{CAN_DROP}", "&8> &aszansa: &7{CHANCE}", "&8> &adoswiadczenie: &7{EXP}", "&8> &azaklecie fortune: &7{FORTUNE}", "&8> &awypada na poziomie: &7{HEIGHT}", "&8> &awypada w ilosci: &7{AMOUNT}", "&8> &amozliwosc wylaczenia: &7{CAN_DISABLE}", "&8> &awydobyc mozna: &7{TOOLS}", "&8> &aaktywny: &7{ACTIVE}");
     public static boolean GUI_CLOSE$AFTER$CLICK = false;

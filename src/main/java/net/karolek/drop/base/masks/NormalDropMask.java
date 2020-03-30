@@ -1,5 +1,6 @@
 package net.karolek.drop.base.masks;
 
+import net.karolek.drop.Config;
 import net.karolek.drop.KarolekDrop;
 import net.karolek.drop.base.DropMask;
 import net.karolek.drop.utils.DropUtil;
@@ -25,9 +26,12 @@ public class NormalDropMask extends DropMask {
     }
 
     @Override
-    public void breakBlock(Player player, ItemStack tool, Block block) {
-        DropUtil.recalculateDurability(player, tool);
-        DropUtil.addItemsToPlayer(player, getDrops(block, tool), block);
+    public boolean breakBlock(Player player, ItemStack tool, Block block) {
+        if(!Config.NORMAL_DROP) {
+            DropUtil.recalculateDurability(player, tool);
+            DropUtil.addItemsToPlayer(player, getDrops(block, tool), block);
+        }
+        return true;
     }
 
     private List<ItemStack> getDrops(final Block block, final ItemStack item) {

@@ -15,8 +15,9 @@ public class CancelDropMask extends DropMask {
     }
 
     @Override
-    public void breakBlock(Player player, ItemStack tool, Block block) {
+    public boolean breakBlock(Player player, ItemStack tool, Block block) {
         Util.sendMsg(player, Config.MESSAGES_CANCELDROP);
+        return false;
     }
 
 
